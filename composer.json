@@ -1,0 +1,18 @@
+{
+  "name": "mindofmicah/pagemaster",
+  "description": "Easily load in static php files in Laravel",
+  "keywords":["laravel"],
+  "authors": [
+    {
+      "name": "Michael Eschbacher",
+      "email": "michaeleschbacher@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MindOfMicah\\PageMaster\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {}
+}
