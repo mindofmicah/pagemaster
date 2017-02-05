@@ -35,7 +35,9 @@ class PageMasterServiceProvider extends ServiceProvider
     private function loadRoutes()
     {
         $excluded_views = config('pagemaster.exclude', []);
-        $this->app['router']->group($this->getRouteOptions(), function () use ($excluded_views){
+        $route_action = config('pagemaster.route_action');
+
+        $this->app['router']->group($this->getRouteOptions(), function () use ($excluded_views, $route_action) {
             foreach ($this->getFiles() as $file) {
                 $slashed = preg_replace('/\.blade\.php/', '', $file->getRelativePathname());
                 $dotted_name = strtr($slashed, '/', '.');
@@ -44,7 +46,7 @@ class PageMasterServiceProvider extends ServiceProvider
                     continue;
                 }
 
-                $this->app['router']->get($slashed, 'MindOfMicah\PageMaster\PageMasterController@show')
+                $this->app['router']->get($slashed,  $route_action)
                     ->name($dotted_name);
             }
         });
