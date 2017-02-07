@@ -15,6 +15,11 @@ class PageMasterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+            ]);
+        }
         $this->publishes([
             __DIR__ . '/../config/pagemaster.php' => config_path('pagemaster.php'),
         ]);
